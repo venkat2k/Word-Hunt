@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <title>Home</title>
+    </head>
+    <body>
+        {{ word }}
+        <div id="textarea">
+        </div>
+        <form role="form" action="/validate" method="POST">
+            <input type="text" placeholder="Your Guess..." name="guess" id="guess">
+            <button type="button" id="subbtn"> Submit </button>
+        </form>
+        <script>
+            $(document).on("keydown", "form", function(event) {
+                if (event.key == "Enter")
+                {
+                    $("#subbtn").click();
+                    return false;
+                }
+                return true;
+            })
+            
+            $("#subbtn").click(function() {
+                console.log({{id}});
+                var temp = "{{ url_for('validate', id=id) }}";
+                console.log(temp);
+                $.ajax({
+                    url: temp,
+                    type: "POST",
+                    data: $('form').serialize(),
+                    success: function(response) {
+                        $("#textarea").append(response+"<br>");
+                        console.log(response);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+                $("#guess").html("");
+            });       
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <title>Home</title>
+        <style>
+            #getname {
+                display: none;
+            }
+            #close {
+                float: right;
+            }
+            #close:hover {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "mainpage">
+            <button id="play"> Play a game </button>
+            <form>
+                <input type="submit" value="LeaderBoard">
+            </form>
+            <form>
+                <input type="submit" value="Rules">
+            </form>
+        </div>
+        <div id = "getname">
+            <form action="{{ url_for('start') }}" method="POST">
+                <span id="close">X</span>
+                <Label> What's your name? </Label>
+                <input type="text">
+                <input type="submit" value="Play">
+            </form>
+        </div>
+        <script>
+            window.onload = function() {
+                document.getElementById("close").onclick = function() {
+                    document.getElementById("mainpage").style.filter = "none";
+                    document.getElementById("getname").style.display = "none";
+                }
+
+                document.getElementById("play").onclick = function() {
+                    document.getElementById("mainpage").style.filter = "blur(5px)";
+                    document.getElementById("getname").style.display = "block";
+                }
+            }
+        </script>
+    </body>
+</html>
