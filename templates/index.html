@@ -4,35 +4,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="style.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Home</title>
-        <style>
-            #getname {
-                display: none;
-            }
-            #close {
-                float: right;
-            }
-            #close:hover {
-                cursor: pointer;
-            }
-        </style>
     </head>
     <body>
         <div id = "mainpage">
-            <button id="play"> Play a game </button>
-            <form>
-                <input type="submit" value="LeaderBoard">
-            </form>
-            <form>
-                <input type="submit" value="Rules">
-            </form>
+            <button id="rules" class="indexbtn">Rules<br><i class="material-icons" style="font-size: 48px;">&#xe241;</i></button>
+            <button id="play" class="indexbtn"> Play <br><i class="fa" style="font-size: 48px;">&#xf04b;</i></button>
+            <button id="lboard" class="indexbtn"> LeaderBoard <br><i class="fa" style="font-size: 48px;">&#xf091;</i> </button>
         </div>
         <div id = "getname">
             <form action="{{ url_for('start') }}" method="POST">
-                <span id="close">X</span>
-                <Label> What's your name? </Label>
-                <input type="text">
-                <input type="submit" value="Play">
+                <span id="close"><i class="fa">&#xf00d;</i></span><br>
+                <Label style="font-size: 24px;"> What's your name? </Label>
+                <input type="text" spellcheck="false">
+                <input type="submit" value="Play" class="btn btn-dark">
             </form>
         </div>
         <script>

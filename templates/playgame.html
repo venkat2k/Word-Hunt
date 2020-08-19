@@ -5,16 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+        <!-- <link rel="stylesheet" href="style.css"> -->
         <title>Home</title>
     </head>
     <body>
-        {{ word }}
-        <div id="textarea">
+        <div id="mainarea">
+            <p id = "score">100</p>
+            <div id="textarea">
+                
+            </div>
+            <form role="form" action="/validate" method="POST" class="inpform">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Your Guess..." name="guess" id="guess" autocomplete="off">
+                    <div class="input-group-append">
+                      <button class="btn btn-dark" type="button" id="subbtn">Submit</button>
+                    </div>
+                  </div>
+            </form>
         </div>
-        <form role="form" action="/validate" method="POST">
-            <input type="text" placeholder="Your Guess..." name="guess" id="guess">
-            <button type="button" id="subbtn"> Submit </button>
-        </form>
+        <div id="endcard">
+            <form action="{{ url_for('endgame', id = id) }}" method="POST">
+                <input type="submit" value="Home">
+            </form>
+        </div>
         <script>
             $(document).on("keydown", "form", function(event) {
                 if (event.key == "Enter")
@@ -26,22 +40,37 @@
             })
             
             $("#subbtn").click(function() {
-                console.log({{id}});
                 var temp = "{{ url_for('validate', id=id) }}";
-                console.log(temp);
                 $.ajax({
                     url: temp,
                     type: "POST",
                     data: $('form').serialize(),
                     success: function(response) {
-                        $("#textarea").append(response+"<br>");
+                        var entry = "<div class='entry'>";
+                        entry += "<label>" + response.guess + " - </label>";
+                        var result = response.result.substring(0, 7);
+                        if (result == "Invalid")
+                            entry += "<span class='bad-entry'>" + response.result + "</span>";
+                        else entry += "<span class='ok-entry'>" + response.result + "</span>";
+                        entry += "</div>";
+                        $("#textarea").append(entry);
+                        $("#score").html(response.score);
+                            console.log(response);
+                        if (response.over == "1")
+                        {
+                            var endcard_content = "<p> Well Played! Your Score is " + response.score + "</p>";
+                            $("#endcard").prepend(endcard_content);
+                            $("#mainarea").css("filter", "blur(5px)");
+                            $("#endcard").css("display", "block");
+                            $("#endcard").css("filter", "none");
+                        }
                         console.log(response);
                     },
                     error: function(err) {
                         console.log(err);
                     }
                 });
-                $("#guess").html("");
+                $("#guess").val("");
             });       
         </script>
     </body>
