@@ -4,29 +4,55 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
         <!-- <link rel="stylesheet" href="style.css"> -->
         <title>Home</title>
     </head>
     <body>
+        <div id="scoreboard">SCORE <br>100</div>
+        <div id="sidearea">
+            <form action="{{ url_for('gohome', id = id) }}" method="POST">
+                <button id="gohome">HOME &nbsp; <i class="fa" style="font-size: 32px;">&#xf015;</i></button>
+            </form>
+            <form action="{{ url_for('restart', id = id) }}" method="POST">
+                <button id="restart">RESTART &nbsp; <i class="fa" style="font-size: 32px;">&#xf021;</i></button>
+            </form>
+        </div>
         <div id="mainarea">
-            <p id = "score">100</p>
             <div id="textarea">
-                
+                <table class="table table-striped table-dark table-borderless table-hover">
+                    <thead>
+                        <tr>
+                            <th class="th-guess">Guess </td>
+                            <th class="th-crt">Correct</td>
+                            <th class="th-mis">Misplaced</td>
+                            <th class="th-val">Validity</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb-body">
+                        
+                    </tbody>
+                </table>
             </div>
-            <form role="form" action="/validate" method="POST" class="inpform">
+            <form role="form" action="/validate" method="POST" class="inpform" style="margin: 10px;">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Your Guess..." name="guess" id="guess" autocomplete="off">
                     <div class="input-group-append">
-                      <button class="btn btn-dark" type="button" id="subbtn">Submit</button>
+                      <button class="btn btn-secondary" type="button" id="subbtn">Submit</button>
                     </div>
                   </div>
             </form>
         </div>
         <div id="endcard">
+            <p id="end-content"></p>
             <form action="{{ url_for('endgame', id = id) }}" method="POST">
-                <input type="submit" value="Home">
+                <input type="submit" value="Home" class="btn btn-secondary" id="end-home">
+            </form>
+            <form action="{{ url_for('playagain', id = id) }}" method="POST">
+                <input type="submit" value="Play again" class="btn btn-secondary" id="end-playagain">
             </form>
         </div>
         <script>
@@ -38,7 +64,7 @@
                 }
                 return true;
             })
-            
+            var colors = ["#ff4229", "#ff6426", "#ff8426", "#fac020", "#fcee1e", "#ecff1f", "#caff1c", "#c2ff19", "#97ff17", "#64ff17", "#0fff3b"];
             $("#subbtn").click(function() {
                 var temp = "{{ url_for('validate', id=id) }}";
                 $.ajax({
@@ -46,25 +72,49 @@
                     type: "POST",
                     data: $('form').serialize(),
                     success: function(response) {
-                        var entry = "<div class='entry'>";
-                        entry += "<label>" + response.guess + " - </label>";
-                        var result = response.result.substring(0, 7);
+                        console.log(response);
+                        var entry = "<tr>";
+                        entry += "<td> <span class='td-guess'>" + response.guess + "</span></td>";
+                        entry += "<td> <span class='td-crt'>" + response.correct + "</span></td>";
+                        entry += "<td> <span class='td-mis'>" + response.misplaced + "</span></td>";
+                        var result = response.validity;
                         if (result == "Invalid")
-                            entry += "<span class='bad-entry'>" + response.result + "</span>";
-                        else entry += "<span class='ok-entry'>" + response.result + "</span>";
-                        entry += "</div>";
-                        $("#textarea").append(entry);
-                        $("#score").html(response.score);
-                            console.log(response);
+                            entry += "<td> <span class='td-inval'>" + result + "</span></td>";
+                        else entry += "<td> <span class='td-val'>" + result + "</span></td>";
+                        entry += "</tr>"
+                        $("#tb-body").append(entry);
+                        var doc = document.getElementById("textarea");
+                        $("#textarea").scrollTop(doc.scrollHeight);
+                        $("#scoreboard").html("SCORE <br>" + response.score);
+                        $("#scoreboard").css("background-image", "linear-gradient(to right," + colors[response.score/10] + "," + colors[response.score/10 + 1] + ")");
                         if (response.over == "1")
                         {
-                            var endcard_content = "<p> Well Played! Your Score is " + response.score + "</p>";
-                            $("#endcard").prepend(endcard_content);
+                            var endcard_content = "Well Played! Score - " + response.score;
+                            $("#end-content").html(endcard_content);
                             $("#mainarea").css("filter", "blur(5px)");
+                            $("#scoreboard").css("filter", "blur(5px");
+                            $("#gohome").css("filter", "blur(5px");
+                            $("#restart").css("filter", "blur(5px");
                             $("#endcard").css("display", "block");
                             $("#endcard").css("filter", "none");
+                            $("#sidearea").css("pointer-events", "none");
+                            $("#mainarea").css("pointer-events", "none");
+                            $("#scoreboard").css("pointer-events", "none");
                         }
-                        console.log(response);
+                        else if (response.score <= "0")
+                        {
+                            var endcard_content = "Game Over! <br> Score - " + "0";
+                            $("#end-content").html(endcard_content);
+                            $("#mainarea").css("filter", "blur(5px)");
+                            $("#scoreboard").css("filter", "blur(5px");
+                            $("#gohome").css("filter", "blur(5px");
+                            $("#restart").css("filter", "blur(5px");
+                            $("#endcard").css("display", "block");
+                            $("#endcard").css("filter", "none");
+                            $("#sidearea").css("pointer-events", "none");
+                            $("#mainarea").css("pointer-events", "none");
+                            $("#scoreboard").css("pointer-events", "none");
+                        }
                     },
                     error: function(err) {
                         console.log(err);

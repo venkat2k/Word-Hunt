@@ -8,9 +8,51 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <title>Home</title>
     </head>
     <body>
+        <div id="lboard-div">
+            <span id="lboard-head">LEADERBOARD</span>
+            <span id="close-lboard"><i class="fa">&#xf00d;</i></span>
+            <table class="table table-striped table-dark table-borderless table-hover" style="text-align: center;">
+                <thead>
+                    <th>Player Name</th>
+                    <th>Score</th>
+                </thead>
+                <tbody>
+                    {% for item in lboard_items %}
+                    <tr>
+                        <td>{{item[0]}}</td>
+                        <td>{{item[1]}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id="rules-div">
+            <span id="close-rules"><i class="fa">&#xf00d;</i></span>
+            <ul id="rule-list">
+                <li>Word-Hunt is a game where you have to find a hidden word with strategic guesses. </li>
+                <li>At the start of a game, the system chooses a 4-letter word. This word contains only english alphabets
+                    and letters do not repeat in this word. </li>
+                <li>You will make 4-letter word guesses and for each guess you'll receive one of the below verdicts -
+                    <ul>
+                        <li>If your guess is valid, you'll get the number of correctly placed and misplaced letters.</li>
+                        <li>Your guess is invalid.</li>
+                    </ul>
+                </li>
+                <li>For example, let the hidden word be "race".
+                    <ul>
+                        <li>If your guess is "cars", the number of correctly placed letters is 1 - 'a', number of misplaced letters is 2 - 'r' and 'c' 
+                            are in the word but in wrong places.
+                        </li>
+                        <li>If your guess is "rare" or "eat", it is invalid. The guess should have exactly 4 unique letters.</li>
+                    </ul>
+                </li>
+                <li>You start with a score of 100 and for each guess, your score decreases by 2. The game ends when you correctly find the word or when your score becomes 0.</li>
+            </ul>
+        </div>
         <div id = "mainpage">
             <button id="rules" class="indexbtn">Rules<br><i class="material-icons" style="font-size: 48px;">&#xe241;</i></button>
             <button id="play" class="indexbtn"> Play <br><i class="fa" style="font-size: 48px;">&#xf04b;</i></button>
@@ -20,22 +62,56 @@
             <form action="{{ url_for('start') }}" method="POST">
                 <span id="close"><i class="fa">&#xf00d;</i></span><br>
                 <Label style="font-size: 24px;"> What's your name? </Label>
-                <input type="text" spellcheck="false">
-                <input type="submit" value="Play" class="btn btn-dark">
+                <input type="text" spellcheck="false" required name="playername" autocomplete="off">
+                <input type="submit" value="Play" class="btn btn-dark" id="box-play">
             </form>
         </div>
         <script>
-            window.onload = function() {
-                document.getElementById("close").onclick = function() {
-                    document.getElementById("mainpage").style.filter = "none";
-                    document.getElementById("getname").style.display = "none";
-                }
-
-                document.getElementById("play").onclick = function() {
-                    document.getElementById("mainpage").style.filter = "blur(5px)";
-                    document.getElementById("getname").style.display = "block";
-                }
-            }
+            $("#close").click(function() {
+                $("#mainpage").css("filter", "none");
+                $("#getname").css("display", "none");
+                $("#rules").css("pointer-events", "auto");
+                $("#lboard").css("pointer-events", "auto");
+                $("#play").css("pointer-events", "auto");
+            });
+            $("#play").click(function(){
+                $("#mainpage").css("filter", "blur(5px)");
+                $("#getname").css("display", "block");
+                // $("#play").disable();
+                // $("#rules").disable();
+                // $("#lboard").disable();
+                $("#rules").css("pointer-events", "none");
+                $("#lboard").css("pointer-events", "none");
+                $("#play").css("pointer-events", "none");
+            });
+            $("#rules").click(function(){
+                $("#mainpage").css("filter", "blur(5px)");
+                $("#rules-div").css("display", "block");
+                $("#rules").css("pointer-events", "none");
+                $("#lboard").css("pointer-events", "none");
+                $("#play").css("pointer-events", "none");
+            })
+            $("#close-rules").click(function(){
+                $("#rules-div").css("display", "none");
+                $("#rules").css("pointer-events", "auto");
+                $("#lboard").css("pointer-events", "auto");
+                $("#play").css("pointer-events", "auto");
+                $("#mainpage").css("filter", "none");
+            })
+            $("#lboard").click(function(){
+                $("#mainpage").css("filter", "blur(5px)");
+                $("#lboard-div").css("display", "block");
+                $("#rules").css("pointer-events", "none");
+                $("#lboard").css("pointer-events", "none");
+                $("#play").css("pointer-events", "none");
+            })
+            $("#close-lboard").click(function(){
+                $("#lboard-div").css("display", "none");
+                $("#rules").css("pointer-events", "auto");
+                $("#lboard").css("pointer-events", "auto");
+                $("#play").css("pointer-events", "auto");
+                $("#mainpage").css("filter", "none");
+            })
         </script>
     </body>
 </html>

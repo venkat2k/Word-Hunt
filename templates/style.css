@@ -1,5 +1,5 @@
 body {
-    background-image: url('letters.jpg');
+    background-image: url('/static/img/letters.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -18,17 +18,63 @@ body {
 }
 
 #endcard {
-    height: 100px;
-    width: 200px;
+    height: 200px;
+    width: 300px;
+    background-image: linear-gradient(#178fff, #14c4ff);
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    border-radius: 10px;
     margin: auto;
     display: none;
 }
 
+#end-home {
+    float: left;
+    margin: 20px;
+    margin-left: 40px;  
+    bottom: 0;
+    width: 100px;
+    position: absolute;
+    /* background-color: #ff0f27; */
+    background-image: linear-gradient(to left,#ff5c5c, #fc1e1e);
+}
+#end-home:hover {
+    background-image: linear-gradient(to right,#ff5c5c, #fc1e1e);
+    cursor: pointer;
+}
+
+#end-playagain {
+    bottom: 0;
+    position: absolute; 
+    margin: 20px;
+    margin-left: 160px;
+    background-image: linear-gradient(to top, #4dff5c, #0ddb1f);
+}
+#end-playagain:hover {
+    background-image: linear-gradient(to bottom, #4dff5c, #0ddb1f);
+    cursor: pointer;
+}
+#box-play {
+    background-image: linear-gradient(to top, #4dff5c, #0ddb1f);
+    outline: 0;
+    border: 0px;
+}
+input[type="text"] {
+    outline: 0;
+}
+#box-play:hover {
+    background-image: linear-gradient(to bottom, #4dff5c, #0ddb1f);
+}
+#end-content {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    padding: 30px;
+    font-weight: 700;
+}
 #mainpage {
     height: 215px;
     width: 700px;
@@ -56,12 +102,13 @@ body {
 }
 
 #rules {
-    background-image: linear-gradient(#ff5c5c, #fc1e1e);
+    background-image: linear-gradient(#ff4229, #fc1e1e);
 }
 #rules:hover {
     box-shadow: 1px 1px 3px black;
     text-shadow: 0px 0px 2px white;
-    background-image: linear-gradient(to top, #ff5c5c, #fc1e1e);
+    background-image: linear-gradient(to top, #ff4229, #fc1e1e);
+    cursor: pointer;
 }
 #rules:focus {
     outline: none;
@@ -74,6 +121,7 @@ body {
     box-shadow: 1px 1px 3px black;
     text-shadow: 0px 0px 2px white;
     background-image: linear-gradient(to top, #4dff5c, #0ddb1f);
+    cursor: pointer;
     
 }
 #play:focus {
@@ -86,7 +134,7 @@ body {
     box-shadow: 1px 1px 3px black;
     text-shadow: 0px 0px 2px white;
     background-image: linear-gradient(to top,#38aafc, #0d66a6);
-    
+    cursor: pointer;
 }
 #lboard:focus {
     outline: none;
@@ -106,7 +154,7 @@ body {
     text-align: center;
     padding: 5px;
     border-radius: 10px;
-    background-image: linear-gradient(#d9d9d9, #f0f0f0);
+    background-image: linear-gradient(to top, #178fff, #14c4ff);
     box-shadow: 1px 1px 3px black;
 }
 
@@ -121,37 +169,170 @@ body {
 
 #mainarea {
     height: 500px;
-    width: 500px;
+    width: 700px;
     top: 0;
     bottom: 0;
     left: 0;
     position: absolute;
     margin: auto;
-    margin-left: 200px;
+    margin-left: 180px;
     border-radius: 10px;
-    background-image: linear-gradient(to left, #d9d9d9, #f0f0f0);
-    padding: 10px;
-
+    background-color: #262525;
 }
 
+#scoreboard {
+    text-align: center;
+    background-image: linear-gradient(to right, #64ff17, #0fff3b);
+    height: 200px;
+    width: 200px;
+    /* position: absolute; */
+    top: 0;
+    margin-top: 70px;
+    /* left: 0; */
+    margin-left: 980px;
+    font-size: 48px;
+    color: white;
+    font-weight: 800;
+    box-shadow: 1px 1px 3px black;
+    border-radius: 10px;
+    padding: 20px;
+}
 
+#gohome {
+    background-image: linear-gradient(to right,#2402e6, #1403a6);
+    height: 75px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 24px;
+    color: white;
+    font-weight: 800;
+    margin-left: 980px;
+    position: relative;
+    margin-top: 30px;
+    border: 0px;
+    outline: 0px;
+    box-shadow: 1px 1px 3px black;
+}
+#gohome:hover {
+    background-image: linear-gradient(to left,#2402e6, #1403a6);
+    cursor: pointer;
+}
+#restart {
+    background-image: linear-gradient(to right,#72039e, #490180);
+    height: 75px;
+    width: 200px;
+    border-radius: 10px;
+    font-size: 24px;
+    color: white;
+    font-weight: 800;
+    margin-left: 980px;
+    position: relative;
+    margin-top: 10px;
+    border: 0px;
+    box-shadow: 1px 1px 3px black;
+    outline: 0px;
+}
+#restart:hover {
+    background-image: linear-gradient(to left,#72039e, #490180);
+    cursor: pointer;
+}
 .inpform {
     position: absolute;
     width: 96%;
-    bottom: 5px;
+    bottom: 0px;
 } 
 
-.entry {
+
+td, th {
+    /* padding: 5px; */
+    /* width: 100px; */
+    /* border-right: 1px solid black; */
+    /* border-down: 1px solid black; */
+    /* border: 0px; */
+    font-weight: 800;
+}
+
+#textarea {
+    font-size: 14px;
+    text-align: center;
     width: 100%;
-    height: 30px;
+    height: 440px;
+    /* font-weight: larger; */
+    position: relative;
+    overflow: auto;
+}
+table {
+    border-radius: 10px;
+    border: 0px;
+}
+.td-guess, .td-crt, .td-mis, .td-val, .td-inval {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 40px;
+    padding-right: 40px;   
+    border-radius: 15px;
+}
+.th-guess, .td-guess {
+    background-color: #9d02d1;
+}
+.td-inval {
+    background-color: #ff4229;
+}
+.th-crt, .td-crt {
+    background-color: #0ef047;
+}
+.th-mis, .td-mis {
+    background-color: #099aed;
+}
+.th-val {
+    background-image: linear-gradient(to left, #ff4229, #0ef047);
+}
+.td-val {
+    background-color: #0ef047;
 }
 
-.bad-entry {
-    background-color: red;
+#rules-div, #lboard-div {
+    height: 550px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: #262525;
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 99;
+    opacity: 0.95;
     color: white;
+    font-size: 15px;
+    font-weight: 500;
 }
-
-.ok-entry {
-    background-color: blue;
-    color: white;
+#rule-list {
+    margin-left: 30px;
+    margin-top: 40px;
+    margin-right: 45px;
+}
+#rule-list > li {
+    padding-bottom: 8px;
+}
+#close-rules {
+    float: right;
+    margin: 15px;   
+    cursor: pointer;
+}
+#close-lboard {
+    float: right;
+    margin: 10px;
+    cursor: pointer;
+}
+#lboard-head {
+    position: absolute;
+    left: 0;
+    margin-left: 200px;
+    padding-top: 10px;
+    margin-top: auto;
+    text-align: center;
+    font-weight: 800;
 }
