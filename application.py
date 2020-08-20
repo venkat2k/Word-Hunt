@@ -1,7 +1,6 @@
 from flask import *
 import pymysql
 from random import randint
-import pymysql
 
 app = Flask(__name__)
 app.secret_key = "secretkey123"
