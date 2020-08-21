@@ -4,12 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="style.css"> -->
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <title>Home</title>
+        <title>Word Hunt</title>
     </head>
     <body>
         <div id="lboard-div">
@@ -36,9 +35,9 @@
                 <li>Word-Hunt is a game where you have to find a hidden word with strategic guesses. </li>
                 <li>At the start of a game, the system chooses a 4-letter word. This word contains only english alphabets
                     and letters do not repeat in this word. </li>
-                <li>You will make 4-letter word guesses and for each guess you'll receive one of the below verdicts -
-                    <ul>
-                        <li>If your guess is valid, you'll get the number of correctly placed and misplaced letters.</li>
+                    <li>You will make 4-letter word guesses and for each guess you'll receive one of the below verdicts -
+                        <ul>
+                            <li>If your guess is valid, you'll get the number of correctly placed and misplaced letters.</li>
                         <li>Your guess is invalid.</li>
                     </ul>
                 </li>
@@ -66,52 +65,6 @@
                 <input type="submit" value="Play" class="btn btn-dark" id="box-play">
             </form>
         </div>
-        <script>
-            $("#close").click(function() {
-                $("#mainpage").css("filter", "none");
-                $("#getname").css("display", "none");
-                $("#rules").css("pointer-events", "auto");
-                $("#lboard").css("pointer-events", "auto");
-                $("#play").css("pointer-events", "auto");
-            });
-            $("#play").click(function(){
-                $("#mainpage").css("filter", "blur(5px)");
-                $("#getname").css("display", "block");
-                // $("#play").disable();
-                // $("#rules").disable();
-                // $("#lboard").disable();
-                $("#rules").css("pointer-events", "none");
-                $("#lboard").css("pointer-events", "none");
-                $("#play").css("pointer-events", "none");
-            });
-            $("#rules").click(function(){
-                $("#mainpage").css("filter", "blur(5px)");
-                $("#rules-div").css("display", "block");
-                $("#rules").css("pointer-events", "none");
-                $("#lboard").css("pointer-events", "none");
-                $("#play").css("pointer-events", "none");
-            })
-            $("#close-rules").click(function(){
-                $("#rules-div").css("display", "none");
-                $("#rules").css("pointer-events", "auto");
-                $("#lboard").css("pointer-events", "auto");
-                $("#play").css("pointer-events", "auto");
-                $("#mainpage").css("filter", "none");
-            })
-            $("#lboard").click(function(){
-                $("#mainpage").css("filter", "blur(5px)");
-                $("#lboard-div").css("display", "block");
-                $("#rules").css("pointer-events", "none");
-                $("#lboard").css("pointer-events", "none");
-                $("#play").css("pointer-events", "none");
-            })
-            $("#close-lboard").click(function(){
-                $("#lboard-div").css("display", "none");
-                $("#rules").css("pointer-events", "auto");
-                $("#lboard").css("pointer-events", "auto");
-                $("#play").css("pointer-events", "auto");
-                $("#mainpage").css("filter", "none");
-            })
-        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/indexjs.js') }}"></script>
     </body>
-</html>
+    </html>

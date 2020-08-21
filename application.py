@@ -8,9 +8,11 @@ app.secret_key = "secretkey123"
 connection = pymysql.connect(host="localhost", user="root", passwd="", database="wordhunt")
 cursor = connection.cursor()
 
+# list of possible words
 words = []
 fp = open("words.txt", "r")
 words = fp.read().split()
+fp.close()
 
 def check (word, guess):
     # returns correct, misplaced, validity 
@@ -31,8 +33,10 @@ def check (word, guess):
     return str(correct), str(misplaced), "Valid"
         
 
+
 @app.route("/", methods = ["GET", "POST"])
 def index():
+    # handles homepage
     sql = "SELECT name, score FROM scores ORDER BY score desc LIMIT 10"
     cursor.execute(sql)
     lboard_items = cursor.fetchall()
@@ -40,6 +44,7 @@ def index():
 
 @app.route("/start", methods = ["POST"])
 def start():
+    # initiates a game
     gameid = str(randint(100000, 200000))
     while gameid in session:
         gameid = str(randint(10000, 200000))
@@ -51,10 +56,12 @@ def start():
 
 @app.route("/play/<string:id>", methods = ["POST"])
 def game(id):
+    # handles the gamepage
     return render_template("playgame.html", id=id)
 
 @app.route("/validate/<string:id>", methods=["POST"])
 def validate(id):
+    # handles ajax requests for user entries and returns them a json
     word = session[id]["word"]
     score = session[id]["score"]
     score -= 2
@@ -62,7 +69,6 @@ def validate(id):
     session[id]["score"] = score
     session.modified = True
     guess = request.form.get("guess")
-    print(word, guess, score, session[id])
     correct, misplaced, validity = check(word, guess)
     guess = guess.capitalize()
     if len(guess) > 10:
@@ -74,7 +80,7 @@ def validate(id):
 
 @app.route("/endgame/<string:id>", methods=["POST"])
 def endgame(id):
-    print(session[id])
+    # ends a game and makes a score entry
     score = max(0, session[id]["score"])
     sql = """INSERT INTO scores(name, score) VALUES ("{0}", {1})""".format(session[id]["playername"], score)
     cursor.execute(sql)
@@ -84,6 +90,7 @@ def endgame(id):
 
 @app.route("/playagain/<string:id>", methods=["POST"])
 def playagain(id):
+    # ends a game, makes a score entry and starts a new game
     score = max(0, session[id]["score"])
     player_name = session[id]["playername"]
     sql = """INSERT INTO scores(name, score) VALUES ("{0}", {1})""".format(player_name, score)
@@ -99,11 +106,13 @@ def playagain(id):
 
 @app.route("/gohome/<string:id>", methods=["POST"])
 def gohome(id):
+    # stops a game and returns to home
     session.pop(id)
     return redirect(url_for('index'))
 
 @app.route("/restart/<string:id>", methods=["POST"])
 def restart(id):
+    # stops a game and starts a new one
     player_name = session[id]["playername"]
     session.pop(id)
     gameid = str(randint(100000, 200000))
