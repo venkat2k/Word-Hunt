@@ -26,24 +26,24 @@
                     <thead>
                         <tr>
                             <th class="th-guess">Guess </td>
-                                <th class="th-crt">Correct</td>
-                                    <th class="th-mis">Misplaced</td>
-                                        <th class="th-val">Validity</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tb-body">
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                            <form role="form" action="/validate" method="POST" class="inpform" style="margin: 10px;">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Your Guess..." name="guess" id="guess" autocomplete="off">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="button" id="subbtn">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
+                            <th class="th-crt">Correct</td>
+                            <th class="th-mis">Misplaced</td>
+                            <th class="th-val">Validity</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb-body">
+                        
+                    </tbody>
+                </table>
+            </div>
+            <form role="form" action="/validate" method="POST" class="inpform" style="margin: 10px;">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Your Guess..." name="guess" id="guess" autocomplete="off">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" id="subbtn">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div id="endcard">
             <p id="end-content"></p>
@@ -55,5 +55,10 @@
             </form>
         </div>
         <script src="{{ url_for('static', filename='js/gamejs.js') }}"></script>
+        <script>
+            $("#subbtn").click(function() {
+                senddata("{{ url_for('validate', id=id) }}");
+            })
+        </script>
     </body>
 </html>

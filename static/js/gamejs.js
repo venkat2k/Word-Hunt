@@ -7,10 +7,10 @@ $(document).on("keydown", "form", function(event) {
     return true;
 })
 var colors = ["#ff4229", "#ff6426", "#ff8426", "#fac020", "#fcee1e", "#ecff1f", "#caff1c", "#c2ff19", "#97ff17", "#64ff17", "#0fff3b"];
-$("#subbtn").click(function() {
-    var temp = "{{ url_for('validate', id=id) }}";
+function senddata(target_url) {
+    console.log("here");
     $.ajax({
-        url: temp,
+        url: target_url,
         type: "POST",
         data: $('form').serialize(),
         success: function(response) {
@@ -63,4 +63,4 @@ $("#subbtn").click(function() {
         }
     });
     $("#guess").val("");
-});       
+} 

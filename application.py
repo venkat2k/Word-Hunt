@@ -94,6 +94,7 @@ def playagain(id):
     score = max(0, session[id]["score"])
     player_name = session[id]["playername"]
     sql = """INSERT INTO scores(name, score) VALUES ("{0}", {1})""".format(player_name, score)
+    # connection.close()
     cursor.execute(sql)
     connection.commit()
     session.pop(id)
