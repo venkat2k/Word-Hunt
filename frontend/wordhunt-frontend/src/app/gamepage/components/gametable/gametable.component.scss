@@ -1,0 +1,77 @@
+@import 'src/styles.scss';
+
+.gameContainer {
+    font-family: inherit !important;
+    position: relative;
+    height: 80vh;
+    width: 50vw;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gameTable {
+    position: relative;
+    top: 0;
+    height: 88%;
+    overflow: auto;
+    background-color: $greyColor;
+}
+
+th, td {
+    color: white;
+    background-color: $playerDetails !important;
+    border-color: $bgColor !important; 
+    padding: 0.5em !important;   
+    text-align: center !important;
+}
+
+table {
+    border-radius: 2em !important;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.greenRow {
+    background-color: $greenRowColor !important;
+}
+
+.redRow {
+    background-color: $redRowColor !important;
+}
+
+.userInput {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.userInput input {
+    position: relative;
+    width: 100% !important;
+    margin-right: 1%;
+    background-color: $greyColor;
+    outline: none;
+    color: white;
+}
+
+.userInput button {
+    position: relative;
+    height: 2.1em;
+    width: 4.5em;
+    border-radius: 0.3em;
+    background-color: $greyColor;
+    border: 0px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 0.125em white;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+.userInput button:hover {
+    box-shadow: 0 0 0.35em $shadowColor;
+    text-shadow: 0 0 0.0625em $shadowColor;
+}

@@ -1,0 +1,14 @@
+<div class="cardContainer">
+    <app-card id='rulesCard' cardTitle='RULES' cardIcon='fa fa-list' (click)='showRules=true; hideBackground()'></app-card>
+    <app-card id='playCard' cardTitle='PLAY' cardIcon='fa fa-play' (click)='startPlay=true; hideBackground()'></app-card>
+    <app-card id='leaderboardCard' cardTitle='STANDINGS' cardIcon='fa fa-trophy' (click)='showLeaderboard=true; hideBackground()'></app-card>
+</div>
+<app-rules *ngIf='showRules'></app-rules>
+<app-leaderboard *ngIf='showLeaderboard'></app-leaderboard>
+<div class="popupContainer" *ngIf='startPlay'>
+    <div class="playerDetails">
+        <span>What's your name?</span>
+        <input type="text" [(ngModel)]='playerName' required />
+        <button (click)='startGame()'>START</button>
+    </div>
+</div>

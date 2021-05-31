@@ -1,0 +1,36 @@
+<div class="gameContainer">
+    <div class="gameTable">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Guess</th>
+                    <th>Correct</th>
+                    <th>Misplaced</th>
+                    <th>Valid</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let entry of entries'>
+                    <td [ngClass]="entry.valid == true ? 'greenRow' : 'redRow'">{{ entry.guess }}</td>
+                    <td [ngClass]="entry.valid == true ? 'greenRow' : 'redRow'">{{ entry.correct }}</td>
+                    <td [ngClass]="entry.valid == true ? 'greenRow' : 'redRow'">{{ entry.misplaced }}</td>
+                    <td [ngClass]="entry.valid == true ? 'greenRow' : 'redRow'">{{ entry.valid }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <!-- <div >
+        <div>
+            <h3>{{ entry.guess }}</h3>
+            <h3>{{ entry.match }}</h3>
+            <h3>{{ entry.misplaced }}</h3>
+            <h3>{{ entry.correct }}</h3>
+            <h3>{{ entry.valid }}</h3>
+        </div>
+    </div> -->
+    <div class="userInput">
+        <input type="text" [(ngModel)]='userGuess' required>
+        <button (click)='validateGuess(userGuess)'>Guess</button>
+    </div>
+</div>

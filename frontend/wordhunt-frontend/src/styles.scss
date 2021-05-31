@@ -1,0 +1,38 @@
+$bgColor: #121212;
+$playCard: #34eb3a;
+$rulesCard: #f73f23;
+$leaderboardCard: #427ef5;
+$shadowColor: #abb3ac;
+$playerDetails: #282828;
+$greyColor: #404040;
+$greenRowColor: #045757; 
+$redRowColor: #900c3f;
+
+body {
+    background-color: $bgColor;
+    font-size: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+
+button {
+    height: 2.1em;
+    width: 4.5em;
+    border-radius: 0.3em;
+    background-color: $greyColor;
+    border: 0;
+    color: $shadowColor;
+    font-weight: bold;
+    box-shadow: 0 0 0.125em white;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
+button:hover {
+    box-shadow: 0 0 0.35em $shadowColor;
+    text-shadow: 0 0 0.0625em $shadowColor;
+}

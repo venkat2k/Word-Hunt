@@ -1,0 +1,32 @@
+@import 'src/styles.scss';
+
+.card {
+    height: 20vh;
+    width: 14vw;
+    position: relative;
+    cursor: pointer;
+    margin: 1.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 1em currentColor;
+    text-shadow: 0 0 0.1em $shadowColor;
+    border-radius: 1rem;
+    box-shadow: 
+        0 0 0.3em currentColor,
+        inset 0 0 0.3em currentColor;
+
+    
+    border: 4px solid $playCard;
+    color: $playCard; 
+}
+
+.card i {
+    font-size: 56px;
+    font-weight: bold;
+}
+

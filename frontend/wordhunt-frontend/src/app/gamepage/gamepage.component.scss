@@ -1,0 +1,60 @@
+@import 'src/styles.scss';
+
+.gameContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+app-gametable {
+    height: 95vh;
+    width: 45vw;
+    margin-right: 10vw;
+}
+
+.endCard {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: inherit;
+    height: 12rem;
+    width: 25rem;
+    background-color: $playerDetails;
+    color: $shadowColor;
+    border-radius: 1rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 1em;
+    margin: auto;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+
+.endButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.endButtons > button {
+    font-size: 0.5em;
+    height: 2.5em;
+    width: 7em;
+    margin: 1em;
+}
+
+.gameContainerRight {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+}
+
+.gameContainerRight > app-navicons {
+    margin: 1em;
+    height: 70%;
+}

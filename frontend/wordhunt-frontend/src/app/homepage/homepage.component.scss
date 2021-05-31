@@ -1,0 +1,131 @@
+@import 'src/styles.scss';
+
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    height: min-content;
+    width: min-content;
+    position: absolute;
+    // z-index: 10;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+:host ::ng-deep #playCard > .card {
+    border-color: $playCard;
+    color: $playCard;
+    box-shadow: 
+        0 0 0.3em $playCard,
+        inset 0 0 0.3em $playCard;
+}
+
+:host ::ng-deep #rulesCard > .card {
+    border-color: $rulesCard;
+    color: $rulesCard;
+    box-shadow: 
+        0 0 0.3em $rulesCard,
+        inset 0 0 0.3em $rulesCard;
+}
+
+:host ::ng-deep #leaderboardCard > .card {
+    border-color: $leaderboardCard;
+    color: $leaderboardCard;
+    box-shadow: 
+        0 0 0.3em $leaderboardCard,
+        inset 0 0 0.3em $leaderboardCard;
+}
+
+:host ::ng-deep #playCard > .card::before,
+:host ::ng-deep #rulesCard > .card::before,
+:host ::ng-deep #leaderboardCard > .card::before {
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 85%;
+    bottom: 0;
+    width: 50%;
+    height: 50%;
+    transform: perspective(3em) rotateX(75deg) scale(1, 0.35);
+    filter: blur(1.5em);
+}
+
+:host ::ng-deep #playCard > .card::before {
+    background-color: $playCard;
+}
+:host ::ng-deep #rulesCard > .card::before {
+    background-color: $rulesCard;
+}
+:host ::ng-deep #leaderboardCard > .card::before {
+    background-color: $leaderboardCard;
+}
+
+// :host ::ng-deep #playCard > .card::after,
+// :host ::ng-deep #rulesCard > .card::after,
+// :host ::ng-deep #leaderboardCard > .card::after {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     bottom: 0;
+//     width: 100%;
+//     box-shadow: 0 0 2em currentColor;
+//     opacity: 0;
+// }
+
+// :host ::ng-deep #playCard > .card::after:hover {
+//     opacity: 1;
+// }
+
+:host ::ng-deep #playCard > .card:hover,
+:host ::ng-deep #rulesCard > .card:hover, 
+:host ::ng-deep #leaderboardCard > .card:hover {
+    text-shadow: none;
+    color: $bgColor;
+}
+
+:host ::ng-deep #playCard > .card:hover {
+    background-color: $playCard;
+}
+:host ::ng-deep #rulesCard > .card:hover {
+    background-color: $rulesCard;
+}
+:host ::ng-deep #leaderboardCard > .card:hover {
+    background-color: $leaderboardCard;
+}
+
+.playerDetails {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: inherit;
+    height: 12rem;
+    width: 25rem;
+    background-color: $playerDetails;
+    color: $shadowColor;
+    border-radius: 1rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.playerDetails input {
+    height: 1.5em;
+    width: 15em;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+    background-color: $greyColor;
+    padding: 0.2em;
+    padding-left: 0.4em;
+    color: white;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+.playerDetails span {
+    margin-left: 1em !important;
+}

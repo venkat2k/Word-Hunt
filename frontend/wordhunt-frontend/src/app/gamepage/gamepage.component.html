@@ -1,0 +1,14 @@
+<div class="gameContainer">
+    <app-gametable></app-gametable>
+    <div class="gameContainerRight">
+        <app-scorecard [score]='score'></app-scorecard>
+        <app-navicons></app-navicons>
+    </div>
+</div>
+<div *ngIf='showEndCard' class="endCard">
+    <span>Your score is {{ score }}</span>
+    <div class="endButtons">    
+        <button (click)='goHome()'>HOME</button>
+        <button (click)='restartGame()'>PLAY AGAIN</button>
+    </div>
+</div>

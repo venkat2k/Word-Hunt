@@ -1,0 +1,23 @@
+<div class="rulesContainer">
+    <i class="fa fa-close" (click)='closeRules()'></i>
+    <ul id="ruleList">
+        <li>Word-Hunt is a game where you have to find a hidden word with strategic guesses. </li>
+        <li>At the start of a game, the system chooses a 4-letter word. This word contains only english alphabets
+            and letters do not repeat in this word. </li>
+            <li>You will make 4-letter word guesses and for each guess you'll receive one of the below verdicts -
+                <ul>
+                    <li>If your guess is valid, you'll get the number of correctly placed and misplaced letters.</li>
+                <li>Your guess is invalid.</li>
+            </ul>
+        </li>
+        <li>For example, let the hidden word be "race".
+            <ul>
+                <li>If your guess is "cars", the number of correctly placed letters is 1 - 'a', number of misplaced letters is 2 - 'r' and 'c' 
+                    are in the word but in wrong places.
+                </li>
+                <li>If your guess is "rare" or "eat", it is invalid. The guess should have exactly 4 unique letters.</li>
+            </ul>
+        </li>
+        <li>You start with a score of 100 and for each guess, your score decreases by 2. The game ends when you correctly find the word or when your score becomes 0.</li>
+    </ul>
+</div>

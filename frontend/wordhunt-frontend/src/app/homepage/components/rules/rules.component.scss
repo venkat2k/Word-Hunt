@@ -1,0 +1,28 @@
+@import 'src/styles.scss';
+
+.rulesContainer {
+    height: 60vh;
+    width: 30vw;
+    z-index: 1;
+    background-color: $bgColor;
+    box-shadow: 0 0 0.5em $shadowColor;
+    color: white;
+    font-size: 1rem;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    line-height: 1.5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.rulesContainer i {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer;
+}
