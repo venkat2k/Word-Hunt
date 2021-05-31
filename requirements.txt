@@ -1,7 +1,0 @@
-Flask==1.1.1
-Flask-WTF==0.14.3
-Jinja2==2.10.3
-PyMySQL==0.9.3
-requests==2.22.0
-virtualenv==16.7.8
-Werkzeug==0.15.5
