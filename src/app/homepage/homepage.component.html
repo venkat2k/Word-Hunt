@@ -8,7 +8,7 @@
 <div class="popupContainer" *ngIf='startPlay'>
     <div class="playerDetails">
         <span>What's your name?</span>
-        <input type="text" [(ngModel)]='playerName' required />
+        <input type="text" [(ngModel)]='playerName' autofocus (keyup.enter)='startGame()'/>
         <button (click)='startGame()'>START</button>
     </div>
 </div>

@@ -1,6 +1,50 @@
+@import 'src/styles.scss';
+
 .leaderboard {
-    height: 60vh;
-    width: 40vw;
-    z-index: 1;
-    background-color: red;
+    position: absolute;
+    height: 95%;
+    width: 40%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    // display: flex !important;
+    // flex-direction: column !important;
+    // margin: 5px;
+    border: 1px solid white;
+    background-color: $playerDetails;
+}
+
+.leaderboard > i {
+    position: absolute;
+    color: white;
+    right: 2%;
+    top: 2%;
+    cursor: pointer;
+}
+
+th, td {
+    color: white;
+    background-color: $playerDetails !important;
+    border-color: $bgColor !important; 
+    vertical-align: middle;
+    padding: 2% 3% 2% 3% !important;   
+    text-align: center !important;
+}
+
+table {
+    border-radius: 2em !important;
+    position: absolute;
+    top: 5%;
+    width: 100%;
+    height: 95%;
+}
+
+@media screen and (max-width: 1000px) {
+    .leaderboard {
+        width: 80vw;
+        font-size: smaller;
+        padding: 0% 0% 0% 0% !important; 
+    }
 }

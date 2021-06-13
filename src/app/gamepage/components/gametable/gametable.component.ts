@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameplayService } from 'src/app/core/services/gameplay.service';
 import { GamepageComponent } from '../../gamepage.component';
-import { EndcardComponent } from '../endcard/endcard.component';
 
 @Component({
   selector: 'app-gametable',
@@ -24,6 +23,7 @@ export class GametableComponent implements OnInit {
     if (guess == '') {
       return ;
     }
+    this.userGuess = '';
     this.gameService.validateGuess(guess, this.gameId)
       .subscribe((data) => {
         this.entries.push(data);
@@ -31,12 +31,13 @@ export class GametableComponent implements OnInit {
         this.scrollBottom();
         if (data['match'] == true || score == 0) {
           this.gamepage.completeGame();
+          const playerName = localStorage.getItem('playerName');
+          this.gameService.updateScore(playerName, score).subscribe();
         }
       })
   }
   scrollBottom() {
     let tableContainer = Array.from(document.getElementsByClassName("gameTable") as HTMLCollectionOf <HTMLElement>);
-    // tableContainer[0].scrollTop = tableContainer[0].scrollHeight;
     tableContainer[0].scrollTop = 25000;
   }
 }

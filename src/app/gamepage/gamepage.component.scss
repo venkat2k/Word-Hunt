@@ -55,6 +55,26 @@ app-gametable {
 }
 
 .gameContainerRight > app-navicons {
-    margin: 1em;
+    margin: 8%;
     height: 70%;
+}
+
+@media screen and (max-width: 1000px) {
+    .gameContainer {
+        flex-direction: column-reverse;
+    }
+    app-gametable {
+        font-size: smaller;
+        width: 90vw;
+        height: 60vh;
+        margin-bottom: 5vh;
+        margin-right: 0 !important;
+        margin-top: 0 !important;
+    }
+    .gameContainerRight {
+        width: 90vw;
+        flex-direction: row;
+        align-items: center;
+        height: 30vh;
+    }
 }

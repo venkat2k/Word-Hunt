@@ -6,7 +6,6 @@ import { ScorecardComponent } from './components/scorecard/scorecard.component';
 import { GamepageComponent } from './gamepage.component';
 import { GametableComponent } from './components/gametable/gametable.component';
 import { FormsModule } from '@angular/forms';
-import { EndcardComponent } from './components/endcard/endcard.component';
 import { NaviconsComponent } from './components/navicons/navicons.component';
 
 
@@ -15,7 +14,6 @@ import { NaviconsComponent } from './components/navicons/navicons.component';
     ScorecardComponent,
     GamepageComponent,
     GametableComponent,
-    EndcardComponent,
     NaviconsComponent
   ],
   imports: [

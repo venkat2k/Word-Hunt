@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  // cardDetails: any;
   title: string;
   showRules = false;
   showLeaderboard = false;
@@ -21,10 +20,10 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  test() {
-    console.log(this.showRules);
-  }
   startGame() {
+    if (this.playerName == '') {
+      return;
+    }
     localStorage.setItem('playerName', this.playerName);
     this.gameplayService.getGameDetails().subscribe(
       (data) => {
@@ -36,6 +35,9 @@ export class HomepageComponent implements OnInit {
   closeRules() {
     this.showRules = false;
   }
+  closeLeaderBoard() {
+    this.showLeaderboard = false;
+  }
   hideBackground() {
     let container = Array.from(document.getElementsByClassName("cardContainer") as HTMLCollectionOf <HTMLElement>);
     container[0].style.filter = 'blur(2em)';
@@ -44,6 +46,3 @@ export class HomepageComponent implements OnInit {
     rulesContainer[0].style.display = 'block';
   }
 }
-
-
-// reroute to new url think about making service call there.

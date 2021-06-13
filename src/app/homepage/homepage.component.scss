@@ -61,22 +61,6 @@
     background-color: $leaderboardCard;
 }
 
-// :host ::ng-deep #playCard > .card::after,
-// :host ::ng-deep #rulesCard > .card::after,
-// :host ::ng-deep #leaderboardCard > .card::after {
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     width: 100%;
-//     box-shadow: 0 0 2em currentColor;
-//     opacity: 0;
-// }
-
-// :host ::ng-deep #playCard > .card::after:hover {
-//     opacity: 1;
-// }
-
 :host ::ng-deep #playCard > .card:hover,
 :host ::ng-deep #rulesCard > .card:hover, 
 :host ::ng-deep #leaderboardCard > .card:hover {
@@ -115,7 +99,7 @@
 
 .playerDetails input {
     height: 1.5em;
-    width: 15em;
+    width: 80%;
     margin-top: 1em;
     margin-bottom: 1.5em;
     background-color: $greyColor;
@@ -128,4 +112,13 @@
 
 .playerDetails span {
     margin-left: 1em !important;
+}
+
+@media screen and (max-width: 500px) {
+    .cardContainer {
+        flex-direction: column;
+    }
+    .playerDetails {
+        width: 80%;
+    }
 }

@@ -1,7 +1,7 @@
 @import 'src/styles.scss';
 
 .rulesContainer {
-    height: 60vh;
+    height: max-content;
     width: 30vw;
     z-index: 1;
     background-color: $bgColor;
@@ -25,4 +25,11 @@
     top: 2%;
     right: 2%;
     cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .rulesContainer {
+        width: 88%;
+        font-size: 0.9rem;
+    }
 }

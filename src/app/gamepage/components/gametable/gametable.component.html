@@ -1,4 +1,4 @@
-<div class="gameContainer">
+<div class="gameTableContainer">
     <div class="gameTable">
         <table class="table table-striped">
             <thead>
@@ -19,18 +19,8 @@
             </tbody>
         </table>
     </div>
-
-        <!-- <div >
-        <div>
-            <h3>{{ entry.guess }}</h3>
-            <h3>{{ entry.match }}</h3>
-            <h3>{{ entry.misplaced }}</h3>
-            <h3>{{ entry.correct }}</h3>
-            <h3>{{ entry.valid }}</h3>
-        </div>
-    </div> -->
     <div class="userInput">
-        <input type="text" [(ngModel)]='userGuess' required>
+        <input type="text" [(ngModel)]='userGuess' required autofocus (keyup.enter)='validateGuess(userGuess)'>
         <button (click)='validateGuess(userGuess)'>Guess</button>
     </div>
 </div>

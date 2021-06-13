@@ -1,11 +1,10 @@
 @import 'src/styles.scss';
 
-.gameContainer {
+.gameTableContainer {
     font-family: inherit !important;
     position: relative;
-    height: 80vh;
-    width: 50vw;
-    margin-top: 5vh;
+    height: inherit;
+    width: inherit;
     display: flex;
     flex-direction: column;
     justify-content: center;

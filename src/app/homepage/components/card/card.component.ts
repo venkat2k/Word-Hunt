@@ -13,8 +13,6 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // this.cardTitle = 'hello';
-    // this.cardIcon = 'hey';
   }
 
 }

@@ -29,3 +29,14 @@
 .restart {
     background-color: $leaderboardCard;
 }
+
+
+@media screen and (max-width: 1000px) {
+    .navIcons {
+        height: 20vh;
+        width: 35vw;
+    }
+    .navButton {
+        font-size: 1.5rem;
+    }
+}
