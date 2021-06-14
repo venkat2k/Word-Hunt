@@ -1,6 +1,6 @@
 export const URL_CONSTANTS = {
     // API_BASE_URL: 'http://127.0.0.1:5000/api/',
-    API_BASE_URL: 'https://word-hunt-app-backend.herokuapp.com/'
+    API_BASE_URL: 'https://word-hunt-app-backend.herokuapp.com/api/'
 }
 
 export const API_ENDPOINTS = {

@@ -9,7 +9,7 @@ export class GameplayService {
 
   headers: any;
   constructor(private http: HttpClient) { 
-    this.headers = new HttpHeaders({ 'content-type': 'application/json', 'credentials': 'include'});
+    this.headers = new HttpHeaders({ 'content-type': 'application/json'});
   }
 
   getGameDetails() {
