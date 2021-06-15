@@ -17,6 +17,15 @@ export class GametableComponent implements OnInit {
   ngOnInit(): void {
     let url = this.router.url;
     this.gameId = url.split("/").pop();
+    let gameWord = this.gameService.getGameWord();
+    if (gameWord == '') {
+      this.gameService.getGameDetails().subscribe(
+        (data) => {
+          let gameId = data["gameId"];
+          this.gameService.setGameWord(data["gameWord"]);
+        }
+      )
+    }
   }
 
   validateGuess(guess: string) {
@@ -24,8 +33,7 @@ export class GametableComponent implements OnInit {
       return ;
     }
     this.userGuess = '';
-    this.gameService.validateGuess(guess, this.gameId)
-      .subscribe((data) => {
+    const data = this.gameService.validateGuess(guess);
         this.entries.push(data);
         let score = this.gamepage.updateScore();
         this.scrollBottom();
@@ -34,7 +42,6 @@ export class GametableComponent implements OnInit {
           const playerName = localStorage.getItem('playerName');
           this.gameService.updateScore(playerName, score).subscribe();
         }
-      })
   }
   scrollBottom() {
     let tableContainer = Array.from(document.getElementsByClassName("gameTable") as HTMLCollectionOf <HTMLElement>);

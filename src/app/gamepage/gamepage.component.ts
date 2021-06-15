@@ -37,6 +37,7 @@ export class GamepageComponent implements OnInit {
     this.gameplayService.getGameDetails().subscribe(
       (data) => {
         let gameId = data["gameId"];
+        this.gameplayService.setGameWord(data["gameWord"]);
         this.router.navigateByUrl('play/' + gameId.toString())
             .then(() => {
               window.location.reload();

@@ -28,6 +28,7 @@ export class HomepageComponent implements OnInit {
     this.gameplayService.getGameDetails().subscribe(
       (data) => {
         let gameId = data["gameId"];
+        this.gameplayService.setGameWord(data["gameWord"]);
         this.router.navigate(['play/' + gameId.toString()]);
       }
     )
